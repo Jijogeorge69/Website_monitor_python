@@ -1,7 +1,7 @@
 import request
 import smtplib
 import os
-
+from  linode_api4 import LinodeClient,Instance
 
 EMAIL_ADDRESS=os.environ.get('EMAIL_ID')
 EMAIL_PASSWORD=os.environ.get('EMAIL_PASS') 
@@ -18,8 +18,12 @@ with smptplib.SMTP('GMAIL.COM',587) as smtp:
       smtp.sendmail(EMAIL_ADDRESS, 'INSERT_RECEIVER_ADDRESS', msg)
  
  
-
-
+####To reboot the server, we are doing from linode lib. First we need to setup linode ##
+##set linode token o site##
+ def reboot_server():
+    client =LinodeClient(LINODE_TOKEN)
+    server=client.load(Instance, <>)
+     server.reboot() 
 
 
 try:
